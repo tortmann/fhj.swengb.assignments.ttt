@@ -2,148 +2,149 @@ package fhj.swengb.assignments.ttt.tortmann
 
 import scala.collection.Set
 
-/**
-  * models the different moves the game allows
-  *
-  * each move is made by either player a or player b.
-  */
-sealed trait TMove {
-  def idx: Int
-}
+sealed trait TMove {def idx: Int}
 
-case object TopLeft extends TMove {
-  override def idx: Int = 0
-}
+case object TopLeft extends TMove {override def idx: Int = 0}
 
-case object TopCenter extends TMove {
-  override def idx: Int = 1
-}
+case object TopCenter extends TMove {override def idx: Int = 1}
 
-case object TopRight extends TMove {
-  override def idx: Int = 2
-}
+case object TopRight extends TMove {override def idx: Int = 2}
 
-case object MiddleLeft extends TMove {
-  override def idx: Int = 3
-}
+case object MiddleLeft extends TMove {override def idx: Int = 3}
 
-case object MiddleCenter extends TMove {
-  override def idx: Int = 4
-}
+case object MiddleCenter extends TMove {override def idx: Int = 4}
 
-case object MiddleRight extends TMove {
-  override def idx: Int = 5
-}
+case object MiddleRight extends TMove {override def idx: Int = 5}
 
-case object BottomLeft extends TMove {
-  override def idx: Int = 6
-}
+case object BottomLeft extends TMove {override def idx: Int = 6}
 
-case object BottomCenter extends TMove {
-  override def idx: Int = 7
-}
+case object BottomCenter extends TMove {override def idx: Int = 7}
 
-case object BottomRight extends TMove {
-  override def idx: Int = 8
-}
+case object BottomRight extends TMove {override def idx: Int = 8}
 
 
-/**
-  * for a tic tac toe game, there are two players, player A and player B
-  */
 sealed trait Player
 
-case object PlayerA extends Player
+case object Human extends Player
 
-case object PlayerB extends Player
+case object Computer extends Player
 
 object TicTacToe {
 
-  /**
-    * creates an empty tic tac toe game
-    * @return
-    */
-  def apply(): TicTacToe = ???
+  def main(args: Array[String]) {
 
-  /**
-    * For a given tic tac toe game, this function applies all moves to the game.
-    * The first element of the sequence is also the first move.
-    *
-    * @param t
-    * @param moves
-    * @return
-    */
-  def play(t: TicTacToe, moves: Seq[TMove]): TicTacToe = ???
+    val t = TicTacToe().turn(BottomRight, Human).turn(BottomCenter,Computer).turn(BottomLeft, Human).turn(MiddleCenter,Human).turn(MiddleRight,Computer)
 
-  /**
-    * creates all possible games.
-    * @return
-    */
-  def mkGames(): Map[Seq[TMove], TicTacToe] = ???
+    //test output
+    print(t.asString())
+    println("RemainingMoves: " + t.remainingMoves)
+    println("Number of remaining moves: " + t.remainingMoves.size)
+
+    //test remainingmoves
+    println("Is the game over? " + t.gameOver)
+    println("Winner is: " + t.winner.getOrElse(None))
+
+  }
+  def apply(): TicTacToe = TicTacToe(Map())
+
+  def play(game: TicTacToe, moves: Seq[TMove]): TicTacToe = {
+    var player:Player = Human
+    for(move <- moves){
+      game.turn(move, player)
+      if(player.equals(Human))
+        player = Computer
+      else
+        player = Human
+    }
+
+    return game
+  }
+
+
+  def mkGames(): Map[Seq[TMove], TicTacToe] = {
+
+    val allGames : Map[Seq[TMove], TicTacToe] = Map()
+    return allGames
+  }
 
 }
 
-/**
-  * Models the well known tic tac toe game.
-  *
-  * The map holds the information which player controls which field.
-  *
-  * The nextplayer parameter defines which player makes the next move.
-  */
-case class TicTacToe(moveHistory: Map[TMove, Player],
-                     nextPlayer: Player = PlayerA) {
+case class TicTacToe(moveHistory: Map[TMove, Player], nextPlayer: Player = Human) {
 
-  /**
-    * outputs a representation of the tic tac toe like this:
-    *
-    * |---|---|---|
-    * | x | o | x |
-    * |---|---|---|
-    * | o | x | x |
-    * |---|---|---|
-    * | x | o | o |
-    * |---|---|---|
-    *
-    *
-    * @return
-    */
-  def asString(): String = ???
+  def asString(): String = {
+    var GameBoard: String = "|---|---|---|\n" +
+      "|   |   |   |\n" +
+      "|---|---|---|\n" +
+      "|   |   |   |\n" +
+      "|---|---|---|\n" +
+      "|   |   |   |\n" +
+      "|---|---|---|\n"
 
-  /**
-    * is true if the game is over.
-    *
-    * The game is over if either of a player wins or there is a draw.
-    */
-  val gameOver : Boolean = ???
+    val pos = Map(0->16, 1->20, 2->24, 3->44, 4->48, 5->52, 6->72, 7->76, 8->80)
 
-  /**
-    * the moves which are still to be played on this tic tac toe.
-    */
-  val remainingMoves: Set[TMove] = ???
+    for((m, p) <- moveHistory) {
+      if (p == Human) {
+        GameBoard = GameBoard.updated(pos(m.idx), "X").mkString
+      }
+      else if (p == Computer) {
+      GameBoard = GameBoard.updated(pos(m.idx), "O").mkString
+    }
+      else {
+        GameBoard = GameBoard.updated(pos(m.idx), " ").mkString
+      }
+    }
+    return GameBoard
+  }
 
+  val gameOver : Boolean = {
+    if(winner == None)
+      false
+    else
+      true
+  }
+
+  val remainingMoves: Set[TMove] = {
+    val possibleMoves: Set[TMove] = Set(TopLeft, TopCenter, TopRight, MiddleLeft, MiddleCenter, MiddleRight, BottomLeft, BottomCenter, BottomRight)
+    for(specificMove <- possibleMoves
+        if !moveHistory.contains(specificMove))
+          yield specificMove
+  }
+
+  def winner: Option[(Player, Set[TMove])] = {
+    val winningScenarios = List((0,1,2), (3,4,5), (6,7,8), (0,3,6), (1,4,7), (2,5,8), (0,4,8), (2,4,6))
+    val allMovesPlayerA: List[Int] = List()
+    val allMovesPlayerB: List[Int] = List()
+
+    for(move <- moveHistory){
+      if(moveHistory.get(move._1).contains(Human))
+        allMovesPlayerA.apply(move._1.idx)
+      else
+        allMovesPlayerB.apply(move._1.idx)
+    }
+
+    for(scenario <- winningScenarios){
+      if(allMovesPlayerA.contains(scenario._1) && allMovesPlayerA.contains(scenario._2) && allMovesPlayerA.contains(scenario._3))
+        Some(Human, moveHistory)
+      else if(allMovesPlayerB.contains(scenario._1) && allMovesPlayerB.contains(scenario._2) && allMovesPlayerB.contains(scenario._3))
+        Some(Computer, moveHistory)
+    }
+    None
+  }
+
+  def turn(nextMove: TMove, p: Player): TicTacToe = {
+    if(moveHistory.contains(nextMove)){
+      if(p.equals(Human))
+        TicTacToe(moveHistory + (nextMove -> p), Computer)
+      else
+        TicTacToe(moveHistory + (nextMove -> p))
+    }
+    else
+      TicTacToe(moveHistory)
+  }
   /**
     * given a tic tac toe game, this function returns all
     * games which can be derived by making the next turn. that means one of the
     * possible turns is taken and added to the set.
     */
   lazy val nextGames: Set[TicTacToe] = ???
-
-  /**
-    * Either there is no winner, or PlayerA or PlayerB won the game.
-    *
-    * The set of moves contains all moves which contributed to the result.
-    */
-  def winner: Option[(Player, Set[TMove])] = ???
-
-  /**
-    * returns a copy of the current game, but with the move applied to the tic tac toe game.
-    *
-    * @param move to be played
-    * @param player the player
-    * @return
-    */
-  def turn(p: TMove, player: Player): TicTacToe = ???
-
 }
-
-
