@@ -31,20 +31,6 @@ case object Computer extends Player
 
 object TicTacToe {
 
-  def main(args: Array[String]) {
-
-    val t = TicTacToe().turn(BottomRight, Human).turn(BottomCenter,Computer).turn(BottomLeft, Human).turn(MiddleCenter,Human).turn(MiddleRight,Computer)
-
-    //test output
-    print(t.asString())
-    println("RemainingMoves: " + t.remainingMoves)
-    println("Number of remaining moves: " + t.remainingMoves.size)
-
-    //test remainingmoves
-    println("Is the game over? " + t.gameOver)
-    println("Winner is: " + t.winner.getOrElse(None))
-
-  }
   def apply(): TicTacToe = TicTacToe(Map())
 
   def play(game: TicTacToe, moves: Seq[TMove]): TicTacToe = {
