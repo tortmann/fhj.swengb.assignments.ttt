@@ -32,7 +32,7 @@ class TicTacToeApp extends javafx.application.Application {
 
   override def start(stage: Stage): Unit =
     try {
-      stage.setTitle("Administrative Section")
+      stage.setTitle("TIC TAC TOE")
       loader.load[Parent]() // side effect
       val scene = new Scene(loader.getRoot[Parent])
       stage.setScene(scene)
