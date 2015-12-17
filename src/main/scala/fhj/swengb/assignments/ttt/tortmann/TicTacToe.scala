@@ -47,11 +47,7 @@ object TicTacToe {
   }
 
 
-  def mkGames(): Map[Seq[TMove], TicTacToe] = {
-
-    val allGames : Map[Seq[TMove], TicTacToe] = Map()
-    return allGames
-  }
+  def mkGames(): Map[Seq[TMove], TicTacToe] = ???
 
 }
 
