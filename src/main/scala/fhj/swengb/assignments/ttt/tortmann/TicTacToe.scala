@@ -112,11 +112,9 @@ case class TicTacToe(moveHistory: Map[TMove, Player], nextPlayer: Player = Human
 
     for (scenarios <- winningScenarios) {
       if (allMovesPlayerA.contains(scenarios._1) && allMovesPlayerA.contains(scenarios._2) && allMovesPlayerA.contains(scenarios._3)) {
-        println("'X' has won! Congratulations! - Please press 'new game' to try again")
         return Some(Human, moveHistory.keySet)
       }
       else if (allMovesPlayerB.contains(scenarios._1) && allMovesPlayerB.contains(scenarios._2) && allMovesPlayerB.contains(scenarios._3)) {
-        println("'O' has won! Congratulations! - Please press 'new game' to try again")
         return Some(Computer, moveHistory.keySet)
       }
     }

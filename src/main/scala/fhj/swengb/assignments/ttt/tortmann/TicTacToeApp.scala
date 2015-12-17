@@ -55,16 +55,20 @@ class TicTacToeAppController {
   @FXML private var btn_7: Button = _
   @FXML private var btn_8: Button = _
   @FXML private var btn_new: Button = _
+  @FXML private var winner: Label = _
 
   val buttons: List[Button] = List(btn_0, btn_1, btn_2, btn_3, btn_4, btn_5, btn_6, btn_7, btn_8)
 
-  def initialize(): Unit = {}
+  def initialize(): Unit = {
+    winner.setText("Use the grid below to play a game of Tic Tac Toe")
+  }
 
   def restart(): Unit = {
     startGame = TicTacToe()
-    btn_0.setText("");btn_1.setText("");btn_2.setText("");btn_3.setText("");btn_4.setText("");btn_5.setText("");btn_6.setText("");btn_7.setText("");btn_8.setText("")
+    btn_0.setText("");btn_1.setText("");btn_2.setText("");btn_3.setText("");btn_4.setText("");btn_5.setText("");btn_6.setText("");btn_7.setText("");btn_8.setText("");winner.setText("Use the grid below to play a game of Tic Tac Toe")
     btn_0.setDisable(false);btn_1.setDisable(false);btn_2.setDisable(false);btn_3.setDisable(false);btn_4.setDisable(false);btn_5.setDisable(false);btn_6.setDisable(false);btn_7.setDisable(false);btn_8.setDisable(false)
   }
+
   var startGame = TicTacToe()
 
   def updateGame(field:Button, currentgame:TicTacToe): TicTacToe = {
@@ -81,9 +85,12 @@ class TicTacToeAppController {
       case "btn_7" => BottomCenter
       case "btn_8" => BottomRight
     }
+
     val gameUpToDate = currentgame.turn(position, currentgame.nextPlayer)
     field.setDisable(true)
     if (gameUpToDate.gameOver) {
+      if (gameUpToDate.winner.isDefined) winner.setText(gameUpToDate.winner.head._1.toString + " has won! Congratulations! - Please press 'new game' to try again!")
+      else winner.setText("This game is a tie! Please press 'new game' to try again!")
       btn_0.setDisable(true);btn_1.setDisable(true);btn_2.setDisable(true);btn_3.setDisable(true);btn_4.setDisable(true);btn_5.setDisable(true);btn_6.setDisable(true);btn_7.setDisable(true);btn_8.setDisable(true)
     }
     gameUpToDate
@@ -116,6 +123,5 @@ class TicTacToeAppController {
   def B8(): Unit = {
     val gameUpToDate = updateGame(btn_8,startGame); startGame = gameUpToDate
   }
-
 }
 
