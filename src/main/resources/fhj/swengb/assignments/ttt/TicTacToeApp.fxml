@@ -20,47 +20,20 @@
           <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="btn_0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#B0" prefHeight="131.0" prefWidth="103.0">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font></Button>
-            <Button fx:id="btn_1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#B1" prefHeight="131.0" prefWidth="103.0" GridPane.columnIndex="1">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font></Button>
-            <Button fx:id="btn_2" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#B2" prefHeight="131.0" prefWidth="103.0" GridPane.columnIndex="2">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font></Button>
-            <Button fx:id="btn_3" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#B3" prefHeight="131.0" prefWidth="103.0" GridPane.rowIndex="1">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font></Button>
-            <Button fx:id="btn_4" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#B4" prefHeight="131.0" prefWidth="103.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font></Button>
-            <Button fx:id="btn_5" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#B5" prefHeight="131.0" prefWidth="103.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font></Button>
-            <Button fx:id="btn_6" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#B6" prefHeight="131.0" prefWidth="103.0" GridPane.rowIndex="2">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font></Button>
-            <Button fx:id="btn_7" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#B7" prefHeight="131.0" prefWidth="103.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font></Button>
-            <Button fx:id="btn_8" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#B8" prefHeight="131.0" prefWidth="103.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font></Button>
+            <Button fx:id="btn_0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#B0" prefHeight="131.0" prefWidth="103.0" styleClass="btn"></Button>
+            <Button fx:id="btn_1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#B1" prefHeight="131.0" prefWidth="103.0" GridPane.columnIndex="1" styleClass="btn"></Button>
+            <Button fx:id="btn_2" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#B2" prefHeight="131.0" prefWidth="103.0" GridPane.columnIndex="2" styleClass="btn"></Button>
+            <Button fx:id="btn_3" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#B3" prefHeight="131.0" prefWidth="103.0" GridPane.rowIndex="1" styleClass="btn"></Button>
+            <Button fx:id="btn_4" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#B4" prefHeight="131.0" prefWidth="103.0" GridPane.columnIndex="1" GridPane.rowIndex="1" styleClass="btn"></Button>
+            <Button fx:id="btn_5" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#B5" prefHeight="131.0" prefWidth="103.0" GridPane.columnIndex="2" GridPane.rowIndex="1" styleClass="btn"></Button>
+            <Button fx:id="btn_6" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#B6" prefHeight="131.0" prefWidth="103.0" GridPane.rowIndex="2" styleClass="btn"></Button>
+            <Button fx:id="btn_7" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#B7" prefHeight="131.0" prefWidth="103.0" GridPane.columnIndex="1" GridPane.rowIndex="2" styleClass="btn"></Button>
+            <Button fx:id="btn_8" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#B8" prefHeight="131.0" prefWidth="103.0" GridPane.columnIndex="2" GridPane.rowIndex="2" styleClass="btn"></Button>
          </children>
       </GridPane>
    </center>
    <bottom>
-      <Button fx:id="btn_new" mnemonicParsing="false" onAction="#restart" prefHeight="38.0" prefWidth="111.0" text="new game" BorderPane.alignment="CENTER">
+      <Button fx:id="btn_new" mnemonicParsing="false" onAction="#restart" prefHeight="38.0" prefWidth="111.0" text="new game" BorderPane.alignment="CENTER" styleClass="btn_new">
          <BorderPane.margin>
             <Insets bottom="15.0" />
          </BorderPane.margin>
@@ -70,7 +43,7 @@
       </Button>
    </bottom>
    <top>
-      <Label fx:id="winner" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="31.0" prefWidth="650.0" BorderPane.alignment="CENTER">
+      <Label fx:id="winner" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="31.0" prefWidth="650.0" BorderPane.alignment="CENTER" styleClass="winnerLabel">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
